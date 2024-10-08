@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,18 +16,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="0Th-qp-mGL">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vector" translatesAutoresizingMaskIntoConstraints="NO" id="sHa-2B-hPJ">
+                                <rect key="frame" x="159" y="387.66666666666669" width="75" height="77"/>
+                                <color key="backgroundColor" red="0.1019607843" green="0.1058823529" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="4W6-7A-rbO"/>
+                                    <constraint firstAttribute="height" constant="77" id="KLB-PW-8kY"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="0Th-qp-mGL" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="BKa-ho-E8e"/>
-                            <constraint firstAttribute="bottom" secondItem="0Th-qp-mGL" secondAttribute="bottom" id="MWb-du-ilF"/>
-                            <constraint firstItem="0Th-qp-mGL" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Upa-7f-6q2"/>
-                            <constraint firstItem="0Th-qp-mGL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZW4-qq-1O9"/>
+                            <constraint firstItem="sHa-2B-hPJ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="PkC-XX-Q4i"/>
+                            <constraint firstItem="sHa-2B-hPJ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="yRS-QQ-vhR"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -38,9 +39,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchScreen" width="1875" height="4060"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="Vector" width="72.666664123535156" height="75.333335876464844"/>
     </resources>
 </document>
