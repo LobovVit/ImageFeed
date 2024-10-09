@@ -29,7 +29,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="5bz-nj-uXN" userLabel="Cell Image">
-                                                    <rect key="frame" x="16" y="15" width="361" height="197"/>
+                                                    <rect key="frame" x="16" y="4" width="361" height="208"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                             <integer key="value" value="16"/>
@@ -38,7 +38,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rI5-mD-Bxu" userLabel="Like Button">
-                                                    <rect key="frame" x="333" y="15" width="44" height="44"/>
+                                                    <rect key="frame" x="333" y="4" width="44" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="1IB-ae-dF9"/>
                                                         <constraint firstAttribute="width" constant="44" id="svi-gD-Vhh"/>
@@ -62,7 +62,7 @@
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8Qe-yV-94D" secondAttribute="trailing" constant="20" symbolic="YES" id="mJT-Js-6qi"/>
                                                 <constraint firstItem="8Qe-yV-94D" firstAttribute="leading" secondItem="5bz-nj-uXN" secondAttribute="leading" constant="8" id="pla-Ns-BEw"/>
                                                 <constraint firstItem="5bz-nj-uXN" firstAttribute="leading" secondItem="Ks2-sB-wme" secondAttribute="leading" constant="16" id="rog-SB-AvT"/>
-                                                <constraint firstItem="5bz-nj-uXN" firstAttribute="top" secondItem="Ks2-sB-wme" secondAttribute="topMargin" constant="4" id="xIY-Ys-4xJ"/>
+                                                <constraint firstItem="5bz-nj-uXN" firstAttribute="top" secondItem="Ks2-sB-wme" secondAttribute="top" constant="4" id="xIY-Ys-4xJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.1019607843" green="0.1058823529" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
