@@ -154,13 +154,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffJ-ZD-EVe">
-                                <rect key="frame" x="171.66666666666666" y="785" width="50" height="50"/>
+                                <rect key="frame" x="171.66666666666666" y="777" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="e3h-Iu-ho8"/>
                                     <constraint firstAttribute="height" constant="50" id="zzg-TJ-e2a"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="share"/>
+                                <state key="normal" image="Share"/>
                                 <connections>
                                     <action selector="didTapShareButton:" destination="sgU-bW-mdD" eventType="touchUpInside" id="F75-m6-cMi"/>
                                 </connections>
@@ -169,14 +169,14 @@
                         <viewLayoutGuide key="safeArea" id="0xs-CJ-WDb"/>
                         <color key="backgroundColor" red="0.1019607843" green="0.1058823529" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="0xs-CJ-WDb" firstAttribute="trailing" secondItem="u1G-jC-1w8" secondAttribute="trailing" id="4Zx-OV-Ge5"/>
-                            <constraint firstItem="u1G-jC-1w8" firstAttribute="leading" secondItem="0xs-CJ-WDb" secondAttribute="leading" id="64d-ma-zHA"/>
-                            <constraint firstItem="0xs-CJ-WDb" firstAttribute="bottom" secondItem="u1G-jC-1w8" secondAttribute="bottom" id="GkQ-hm-U7l"/>
+                            <constraint firstAttribute="trailing" secondItem="u1G-jC-1w8" secondAttribute="trailing" id="4Zx-OV-Ge5"/>
+                            <constraint firstItem="u1G-jC-1w8" firstAttribute="leading" secondItem="oAP-6X-at7" secondAttribute="leading" id="64d-ma-zHA"/>
+                            <constraint firstAttribute="bottom" secondItem="u1G-jC-1w8" secondAttribute="bottom" id="GkQ-hm-U7l"/>
                             <constraint firstItem="xLm-lS-Jwj" firstAttribute="top" secondItem="0xs-CJ-WDb" secondAttribute="top" constant="4" id="IJk-HW-yw7"/>
                             <constraint firstItem="xLm-lS-Jwj" firstAttribute="leading" secondItem="0xs-CJ-WDb" secondAttribute="leading" constant="7" id="KZ7-uU-UcX"/>
                             <constraint firstItem="ffJ-ZD-EVe" firstAttribute="centerX" secondItem="0xs-CJ-WDb" secondAttribute="centerX" id="Q5p-CJ-89c"/>
-                            <constraint firstItem="u1G-jC-1w8" firstAttribute="top" secondItem="0xs-CJ-WDb" secondAttribute="top" id="i2r-5C-F0I"/>
-                            <constraint firstItem="0xs-CJ-WDb" firstAttribute="bottom" secondItem="ffJ-ZD-EVe" secondAttribute="bottom" constant="17" id="vBS-Gq-DSS"/>
+                            <constraint firstItem="u1G-jC-1w8" firstAttribute="top" secondItem="oAP-6X-at7" secondAttribute="top" id="i2r-5C-F0I"/>
+                            <constraint firstItem="0xs-CJ-WDb" firstAttribute="bottom" secondItem="ffJ-ZD-EVe" secondAttribute="bottom" constant="25" id="vBS-Gq-DSS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BXa-oY-cto"/>
@@ -208,16 +208,17 @@
         <!--Navigation Controller-->
         <scene sceneID="ZEl-iU-AaU">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="68u-fw-kbB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="tab_editorial_active" id="tUY-gN-s1I"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="68u-fw-kbB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="tab_editorial_active" id="tUY-gN-s1I">
+                        <color key="badgeColor" red="0.1019607843" green="0.1058823529" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aSN-m0-ahx">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.1019607843" green="0.1058823529" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <navigationBarAppearance key="standardAppearance">
+                        <navigationBarAppearance key="standardAppearance" backgroundImageContentMode="bottom">
                             <color key="backgroundColor" red="0.1019607843" green="0.1058823529" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                         </navigationBarAppearance>
                     </navigationBar>
@@ -234,8 +235,8 @@
     <resources>
         <image name="0" width="200" height="132"/>
         <image name="Backward" width="24" height="24"/>
+        <image name="Share" width="51" height="51"/>
         <image name="like_button_off" width="30" height="28"/>
-        <image name="share" width="50" height="50"/>
         <image name="tab_editorial_active" width="30" height="30"/>
         <image name="tab_login_active" width="30" height="30"/>
     </resources>
