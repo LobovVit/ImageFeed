@@ -48,12 +48,14 @@ final class OAuth2Service {
         completion: @escaping(Result<OAuthTokenResponseBody, Error>) -> Void
     ) -> URLSessionTask {
         let decoder = JSONDecoder()
-        return urlSession.data(for: request) { (result: Result<Data, Error>) in
-            let response = result.flatMap { data -> Result<OAuthTokenResponseBody, Error> in
-                Result { try decoder.decode(OAuthTokenResponseBody.self, from: data) }
+            return urlSession.data(for: request) { (result: Result<Data, Error>) in
+                let response = result.flatMap { data -> Result<OAuthTokenResponseBody, Error> in
+                    Result {
+                        try decoder.decode(OAuthTokenResponseBody.self, from: data) 
+                    }
+                }
+                completion(response)
             }
-            completion(response)
-        }
     }
     
     func fetchOAuthToken(code: String, completion: @escaping (Result<String, Error>) -> Void) {
@@ -62,7 +64,10 @@ final class OAuth2Service {
             return
         }
         let task = decode(for: request) { [weak self] result in
-            guard let self else { return }
+            guard let self else {
+                print("ERR: decode error")
+                return
+            }
             switch result {
             case .success(let body):
                 let authToken = body.accessToken

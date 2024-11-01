@@ -33,10 +33,7 @@ final class SplashViewController: UIViewController {
 
 extension SplashViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Проверим, что переходим на авторизацию
         if segue.identifier == showAuthenticationScreen {
-            
-            // Доберёмся до первого контроллера в навигации. Мы помним, что в программировании отсчёт начинается с 0?
             guard
                 let navigationController = segue.destination as? UINavigationController,
                 let viewController = navigationController.viewControllers[0] as? AuthViewController
@@ -44,9 +41,7 @@ extension SplashViewController {
                 assertionFailure("Failed to prepare for \(showAuthenticationScreen)")
                 return
             }
-            
             viewController.delegate = self
-            
         } else {
             super.prepare(for: segue, sender: sender)
            }
