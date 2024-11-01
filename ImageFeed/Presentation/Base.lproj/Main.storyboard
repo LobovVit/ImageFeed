@@ -249,7 +249,7 @@
                                     <segue destination="jYO-Sy-zcX" kind="show" identifier="ShowWebView" id="vhD-Wi-rUN"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Unsplash_ic" translatesAutoresizingMaskIntoConstraints="NO" id="Qw6-dS-qcE">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unsplash_ic" translatesAutoresizingMaskIntoConstraints="NO" id="Qw6-dS-qcE">
                                 <rect key="frame" x="166.66666666666666" y="396" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="Qw8-S6-UrD"/>
@@ -382,11 +382,11 @@
         <image name="0" width="200" height="132"/>
         <image name="Backward" width="24" height="24"/>
         <image name="Share" width="51" height="51"/>
-        <image name="Unsplash_ic" width="60" height="60"/>
         <image name="Vector" width="72.666664123535156" height="75.333335876464844"/>
         <image name="like_button_off" width="30" height="28"/>
         <image name="tab_editorial_active" width="30" height="30"/>
         <image name="tab_login_active" width="30" height="30"/>
+        <image name="unsplash_ic" width="60" height="60"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
