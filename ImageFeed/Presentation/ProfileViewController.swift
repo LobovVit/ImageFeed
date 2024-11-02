@@ -8,7 +8,6 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    private let backgroundColor = UIColor(red: 26.0/255, green: 27.0/255, blue: 34.0/255, alpha: 1.0)
     private let fontColor = UIColor(red: 174.0/255, green: 175.0/255, blue: 180.0/255, alpha: 1.0)
     private let userPicture: String = "userPick"
     private let exitBtnPick: String = "exitBtnPick"
@@ -18,7 +17,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = backgroundColor
+        view.backgroundColor = UIColor(named: "ypBlack")
         addUserPicture(userPicture: userPicture)
         addUserName(userName: userName)
         addUserLogin(userLogin: userLogin)

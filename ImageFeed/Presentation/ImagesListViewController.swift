@@ -10,10 +10,9 @@ import UIKit
 final class ImagesListViewController: UIViewController {
     
     private let showSingleImageSegueIdentifier = "ShowSingleImage"
+    private let photosName: [String] = Array(0..<20).map{ "\($0)" }
     
     @IBOutlet private var tableView: UITableView!
-    
-    private let photosName: [String] = Array(0..<20).map{ "\($0)" }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +27,7 @@ final class ImagesListViewController: UIViewController {
     }()
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == showSingleImageSegueIdentifier { 
+        if segue.identifier == showSingleImageSegueIdentifier {
             guard
                 let viewController = segue.destination as? SingleImageViewController,
                 let indexPath = sender as? IndexPath
