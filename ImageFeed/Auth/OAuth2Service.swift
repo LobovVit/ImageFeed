@@ -10,6 +10,7 @@ final class OAuth2Service {
     
     static let shared = OAuth2Service()
     private let urlSession = URLSession.shared
+    private let decoder = JSONDecoder()
     private var authToken: String? {
         get {
             return OAuth2TokenStorage().token
@@ -47,15 +48,14 @@ final class OAuth2Service {
         for request: URLRequest,
         completion: @escaping(Result<OAuthTokenResponseBody, Error>) -> Void
     ) -> URLSessionTask {
-        let decoder = JSONDecoder()
-            return urlSession.data(for: request) { (result: Result<Data, Error>) in
-                let response = result.flatMap { data -> Result<OAuthTokenResponseBody, Error> in
-                    Result {
-                        try decoder.decode(OAuthTokenResponseBody.self, from: data) 
-                    }
+        return urlSession.data(for: request) { (result: Result<Data, Error>) in
+            let response = result.flatMap { data -> Result<OAuthTokenResponseBody, Error> in
+                Result {
+                    try self.decoder.decode(OAuthTokenResponseBody.self, from: data)
                 }
-                completion(response)
             }
+            completion(response)
+        }
     }
     
     func fetchOAuthToken(code: String, completion: @escaping (Result<String, Error>) -> Void) {

@@ -20,4 +20,6 @@ final class OAuth2TokenStorage {
             UserDefaults.standard.set(newValue, forKey: tokenKey)
         }
     }
+    
+    private init() {}
 }

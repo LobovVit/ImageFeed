@@ -14,7 +14,7 @@ protocol AuthViewControllerDelegate: AnyObject {
     )
 }
 
-class AuthViewController: UIViewController {
+final class AuthViewController: UIViewController {
     
     private let ShowWebView:String = "ShowWebView"
     private let oauth2Service = OAuth2Service.shared
