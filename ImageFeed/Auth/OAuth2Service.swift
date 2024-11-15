@@ -66,6 +66,7 @@ final class OAuth2Service {
     }
     
     func fetchOAuthToken(code: String, completion: @escaping (Result<String, Error>) -> Void) {
+        assert(Thread.isMainThread)
         if task != nil {
             if lastCode != code {
                 task?.cancel()
@@ -87,22 +88,20 @@ final class OAuth2Service {
             return
         }
         let task = decode(for: request) { [weak self] result in
-            DispatchQueue.main.async {
-                guard let self else {
-                    print("ERR: decode error")
-                    return
-                }
-                switch result {
-                case .success(let body):
-                    let authToken = body.accessToken
-                    self.authToken = authToken
-                    completion(.success(authToken))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-                self.task = nil
-                self.lastCode = nil
+            guard let self else {
+                print("ERR: decode error")
+                return
             }
+            switch result {
+            case .success(let body):
+                let authToken = body.accessToken
+                self.authToken = authToken
+                completion(.success(authToken))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+            self.task = nil
+            self.lastCode = nil
         }
         self.task = task
         task.resume()
