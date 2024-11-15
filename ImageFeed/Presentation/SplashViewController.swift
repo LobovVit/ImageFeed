@@ -11,7 +11,7 @@ final class SplashViewController: UIViewController {
     
     private let showAuthenticationScreen = "showAuthenticationScreen"
     private let oauth2Service = OAuth2Service.shared
-    private let storage = OAuth2TokenStorage()
+    private let storage = OAuth2TokenStorage.shared
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

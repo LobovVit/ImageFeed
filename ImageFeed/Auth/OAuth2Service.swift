@@ -11,12 +11,13 @@ final class OAuth2Service {
     static let shared = OAuth2Service()
     private let urlSession = URLSession.shared
     private let decoder = JSONDecoder()
-    private var authToken: String? {
+    private var authToken: String?
+    {
         get {
-            return OAuth2TokenStorage().token
+            return OAuth2TokenStorage.shared.token
         }
         set {
-            OAuth2TokenStorage().token = newValue
+            OAuth2TokenStorage.shared.token = newValue
         }
     }
     
