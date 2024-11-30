@@ -68,10 +68,10 @@ final class WebViewViewController: UIViewController {
         )
         
         webView.navigationDelegate = self
-        self.view.backgroundColor = UIColor(named: "ypWhite") ?? UIColor.white
-        self.view.addSubview(backButton)
-        self.view.addSubview(webView)
-        self.view.addSubview(progressBar)
+        view.backgroundColor = UIColor(named: "ypWhite") ?? UIColor.white
+        view.addSubview(backButton)
+        view.addSubview(webView)
+        view.addSubview(progressBar)
         
         setConstraints(for: backButton)
         setConstraints(for: webView, relativeTo: backButton)
@@ -132,6 +132,7 @@ final class WebViewViewController: UIViewController {
     
     private func updateProgress() {
         progressBar.progress = Float(webView.estimatedProgress)
+        progressBar.setProgress(progressBar.progress, animated: true)
         progressBar.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
     }
 }

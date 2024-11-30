@@ -13,45 +13,12 @@ enum ProfileServiceError: Error {
 final class ProfileService {
     
     static let shared = ProfileService()
+    private init() {}
+    
     private let decoder = JSONDecoder()
     private let urlSession = URLSession.shared
     private var task: URLSessionTask?
     private(set) var profile: Profile?
-    
-    private init() {}
-    
-    private func makeProfileRequest(code: String) -> URLRequest? {
-        guard let baseURL = URL(string: "https://api.unsplash.com") else {
-            print("ERR: invalid base URL")
-            return nil
-        }
-        guard let url = URL(
-            string: "/me",
-            relativeTo: baseURL
-        ) else {
-            print("ERR: building URL from base URL")
-            return nil
-        }
-        var request = URLRequest(url: url)
-        let bearerToken = "Bearer " + code
-        request.setValue(bearerToken, forHTTPHeaderField: "Authorization")
-        request.httpMethod = "GET"
-        return request
-    }
-    
-    private func decode(
-        for request: URLRequest,
-        completion: @escaping(Result<ProfileResult, Error>) -> Void
-    ) -> URLSessionTask {
-        return urlSession.data(for: request) { (result: Result<Data, Error>) in
-            let response = result.flatMap { data -> Result<ProfileResult, Error> in
-                Result {
-                    try self.decoder.decode(ProfileResult.self, from: data)
-                }
-            }
-            completion(response)
-        }
-    }
     
     func fetchProfile(token: String, completion: @escaping (Result<Profile, Error>) -> Void) {
         guard let request = makeProfileRequest(code: token) else {
@@ -83,4 +50,39 @@ final class ProfileService {
         self.task = task
         task.resume()
     }
+    
+    private func makeProfileRequest(code: String) -> URLRequest? {
+        guard let baseURL = URL(string: "https://api.unsplash.com") else {
+            print("ERR: invalid base URL")
+            return nil
+        }
+        guard let url = URL(
+            string: "/me",
+            relativeTo: baseURL
+        ) else {
+            print("ERR: building URL from base URL")
+            return nil
+        }
+        var request = URLRequest(url: url)
+        let bearerToken = "Bearer " + code
+        request.setValue(bearerToken, forHTTPHeaderField: "Authorization")
+        request.httpMethod = "GET"
+        return request
+    }
+    
+    private func decode(
+        for request: URLRequest,
+        completion: @escaping(Result<ProfileResult, Error>) -> Void
+    ) -> URLSessionTask {
+        return urlSession.data(for: request) { [weak self] (result: Result<Data, Error>) in
+            guard let self else { return }
+            let response = result.flatMap { data -> Result<ProfileResult, Error> in
+                Result {
+                    try self.decoder.decode(ProfileResult.self, from: data)
+                }
+            }
+            completion(response)
+        }
+    }
+    
 }

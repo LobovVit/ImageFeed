@@ -20,9 +20,10 @@ struct image: Codable {
 }
 
 final class ProfileImageService {
-    static let shared = ProfileImageService()
     
+    static let shared = ProfileImageService()
     private init() {}
+    
     private var task: URLSessionTask?
     private(set) var userPicURL: String?
     static let didChangeNotification = Notification.Name(rawValue: "ProfileImageProviderDidChange")

@@ -13,6 +13,8 @@ enum AuthServiceError: Error {
 final class OAuth2Service {
     
     static let shared = OAuth2Service()
+    private init() {}
+    
     private let urlSession = URLSession.shared
     private let decoder = JSONDecoder()
     private var task: URLSessionTask?
@@ -26,8 +28,6 @@ final class OAuth2Service {
             OAuth2TokenStorage.shared.token = newValue
         }
     }
-    
-    private init() {}
     
     private func makeOAuthTokenRequest(code: String) -> URLRequest? {
         guard let baseURL = URL(string: "https://unsplash.com") else {
