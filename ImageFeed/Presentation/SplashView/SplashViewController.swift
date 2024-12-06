@@ -15,6 +15,7 @@ final class SplashViewController: UIViewController {
     private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
     private var isAuthorizing: Bool = false
+    private var alertPresenter: AlertPresenting?
     
     private lazy var logoImageView: UIImageView = {
         let view = UIImageView()
@@ -34,7 +35,7 @@ final class SplashViewController: UIViewController {
             isAuthorizing = true
             navigateToAuthviewController()
         }
-        
+        alertPresenter = AlertPresenter(viewController: self)
         self.view.backgroundColor = UIColor(named: "ypBlack")
         self.view.addSubview(logoImageView)
         setConstraints(for: logoImageView)
@@ -123,17 +124,15 @@ extension SplashViewController: AuthViewControllerDelegate {
     }
     
     private func showAlert() {
-        let alertController = UIAlertController(title: "Ошибка",
-                                                message: "Не удалось войти в систему",
-                                                preferredStyle: .alert)
-        let dismissAction = UIAlertAction(title: "Ok", style: .default)
-        alertController.addAction(dismissAction)
-        
-        if var topController = UIApplication.shared.windows.first?.rootViewController {
-            while let presentedViewController = topController.presentedViewController {
-                topController = presentedViewController
-            }
-            topController.present(alertController, animated: true, completion: nil)
+        DispatchQueue.main.async { [weak self] in
+          guard let self else { return }
+          let alertModel = AlertModel(
+            title: "Ошибка",
+            message: "Не удалось войти в систему",
+            buttonText: "Ok",
+            completion: { self.navigateToAuthviewController() }
+          )
+          self.alertPresenter?.showAlert(for: alertModel)
         }
     }
 }
