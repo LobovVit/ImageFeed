@@ -124,7 +124,6 @@ class ProfileViewController: UIViewController {
     
     @objc
     private func didTapButton() {
-        userDescription.text = "Хочу выйти"
         showAlert()
     }
     
@@ -157,31 +156,31 @@ class ProfileViewController: UIViewController {
     }
     
     private func resetPhotos() {
-      ImageListService.shared.resetPhotos()
+        ImageListService.shared.resetPhotos()
     }
     
     private func resetCookies() {
-      HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
-      WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
-        records.forEach { record in
-          WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record]) { }
+        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            records.forEach { record in
+                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record]) { }
+            }
         }
-      }
     }
     
     private func showAlert() {
-      DispatchQueue.main.async { [weak self] in
-        guard let self else { return }
-        let alertModel = AlertModel(
-          title: "Выход",
-          message: "Хотите выйти?",
-          buttonText: "Да",
-          completion: { self.resetAccount() },
-          secondButtonText: "Нет",
-          secondCompletion: { self.dismiss(animated: true) }
-        )
-        self.alertPresenter?.showAlert(for: alertModel)
-      }
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            let alertModel = AlertModel(
+                title: "Выход",
+                message: "Хотите выйти?",
+                buttonText: "Да",
+                completion: { self.resetAccount() },
+                secondButtonText: "Нет",
+                secondCompletion: { self.dismiss(animated: true) }
+            )
+            self.alertPresenter?.showAlert(for: alertModel)
+        }
     }
     
     private func switchToSplashVC() {
@@ -191,11 +190,11 @@ class ProfileViewController: UIViewController {
     }
     
     private func resetAccount() {
-      resetToken()
-      resetView()
-      resetPhotos()
-      resetCookies()
-      switchToSplashVC()
+        resetToken()
+        resetView()
+        resetPhotos()
+        resetCookies()
+        switchToSplashVC()
     }
     
 }

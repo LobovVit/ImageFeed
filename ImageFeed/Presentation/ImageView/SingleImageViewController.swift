@@ -10,14 +10,14 @@ import UIKit
 class SingleImageViewController: UIViewController {
     
     var image: UIImage? {
-            didSet {
-                guard isViewLoaded else { return }
-                imageView.image = image
-                guard let image else { return }
-                imageView.frame.size = image.size
-                rescaleAndCenterImageInScrollView(image: image)
-            }
+        didSet {
+            guard isViewLoaded else { return }
+            imageView.image = image
+            guard let image else { return }
+            imageView.frame.size = image.size
+            rescaleAndCenterImageInScrollView(image: image)
         }
+    }
     
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var imageView: UIImageView!
@@ -68,33 +68,33 @@ class SingleImageViewController: UIViewController {
     }
     
     func downloadImage() {
-      UIBlockingProgressHUD.show()
-      imageView.kf.setImage(with: largeImageURL) { [weak self] result in
-        UIBlockingProgressHUD.dismiss()
-        guard let self else { return }
-        switch result {
-        case .success(let imageResult):
-          self.image = imageResult.image
-          self.rescaleAndCenterImageInScrollView(image: imageResult.image)
-        case .failure:
-          showError()
+        UIBlockingProgressHUD.show()
+        imageView.kf.setImage(with: largeImageURL) { [weak self] result in
+            UIBlockingProgressHUD.dismiss()
+            guard let self else { return }
+            switch result {
+            case .success(let imageResult):
+                self.image = imageResult.image
+                self.rescaleAndCenterImageInScrollView(image: imageResult.image)
+            case .failure:
+                showError()
+            }
         }
-      }
     }
     
     func showError() {
-      DispatchQueue.main.async { [weak self] in
-        guard let self else { return }
-        let alertModel = AlertModel(
-          title: "Ошибка",
-          message: "Попробовать ещё раз?",
-          buttonText: "Нет",
-          completion: { self.dismiss(animated: true) },
-          secondButtonText: "Да",
-          secondCompletion: { self.downloadImage() }
-        )
-        self.alertPresenter?.showAlert(for: alertModel)
-      }
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            let alertModel = AlertModel(
+                title: "Ошибка",
+                message: "Попробовать ещё раз?",
+                buttonText: "Нет",
+                completion: { self.dismiss(animated: true) },
+                secondButtonText: "Да",
+                secondCompletion: { self.downloadImage() }
+            )
+            self.alertPresenter?.showAlert(for: alertModel)
+        }
     }
     
 }

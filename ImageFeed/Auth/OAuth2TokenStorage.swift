@@ -35,5 +35,5 @@ final class OAuth2TokenStorage {
     func removeToken() -> Bool {
         KeychainWrapper.standard.removeObject(forKey: tokenKey)
     }
-
+    
 }

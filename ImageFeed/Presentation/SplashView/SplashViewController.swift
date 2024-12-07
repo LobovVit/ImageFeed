@@ -25,10 +25,10 @@ final class SplashViewController: UIViewController {
         
         return view
     }()
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
         if let token = storage.token {
             fetchProfile(token)
         } else if !isAuthorizing {
@@ -125,14 +125,14 @@ extension SplashViewController: AuthViewControllerDelegate {
     
     private func showAlert() {
         DispatchQueue.main.async { [weak self] in
-          guard let self else { return }
-          let alertModel = AlertModel(
-            title: "Ошибка",
-            message: "Не удалось войти в систему",
-            buttonText: "Ok",
-            completion: { self.navigateToAuthviewController() }
-          )
-          self.alertPresenter?.showAlert(for: alertModel)
+            guard let self else { return }
+            let alertModel = AlertModel(
+                title: "Ошибка",
+                message: "Не удалось войти в систему",
+                buttonText: "Ok",
+                completion: { self.navigateToAuthviewController() }
+            )
+            self.alertPresenter?.showAlert(for: alertModel)
         }
     }
 }
