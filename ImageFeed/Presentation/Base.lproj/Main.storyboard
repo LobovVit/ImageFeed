@@ -45,7 +45,10 @@
                                                         <constraint firstAttribute="width" constant="44" id="svi-gD-Vhh"/>
                                                     </constraints>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                    <state key="normal" title="" image="like_button_off"/>
+                                                    <state key="normal" title="" image="like_button_on"/>
+                                                    <connections>
+                                                        <action selector="didTapLikeButton:" destination="Uqm-gf-E3q" eventType="touchUpInside" id="hS8-0u-goT"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="08 октября 2024" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Qe-yV-94D">
                                                     <rect key="frame" x="24" y="188" width="106" height="16"/>
@@ -331,7 +334,7 @@
         <image name="0" width="200" height="132"/>
         <image name="Backward" width="24" height="24"/>
         <image name="Share" width="51" height="51"/>
-        <image name="like_button_off" width="30" height="28"/>
+        <image name="like_button_on" width="30" height="28"/>
         <image name="tab_editorial_active" width="30" height="30"/>
         <image name="unsplash_ic" width="60" height="60"/>
         <systemColor name="systemBackgroundColor">

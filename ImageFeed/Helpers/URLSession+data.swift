@@ -13,6 +13,7 @@ enum NetworkError: Error {
 }
 
 extension URLSession {
+    
     func data(for request: URLRequest, completion: @escaping (Result<Data, Error>) -> Void ) -> URLSessionTask {
         let fulfillCompletionOnTheMainThread: (Result<Data, Error>) -> Void = { result in
             DispatchQueue.main.async {
@@ -45,6 +46,7 @@ extension URLSession {
         completion: @escaping(Result<T, Error>) -> Void
     ) -> URLSessionTask {
         let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
         let task = data(for: request) { (result: Result<Data, Error>) in
             switch result {
             case .success(let responseData):
@@ -60,7 +62,6 @@ extension URLSession {
                 completion(.failure(error))
             }
         }
-        
         return task
     }
 }

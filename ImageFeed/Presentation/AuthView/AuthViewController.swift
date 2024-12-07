@@ -41,7 +41,7 @@ final class AuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.view.backgroundColor = UIColor(named: "ypBlack")
         self.view.addSubview(logoView)
         self.view.addSubview(signinButton)
@@ -81,6 +81,7 @@ final class AuthViewController: UIViewController {
 }
 
 extension AuthViewController: WebViewViewControllerDelegate {
+    
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
         vc.dismiss(animated: true)
         delegate?.authViewController(self, didAuthenticateWith: code)

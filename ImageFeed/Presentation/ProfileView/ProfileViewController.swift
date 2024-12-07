@@ -6,6 +6,7 @@
 //
 import UIKit
 import Kingfisher
+import WebKit
 
 class ProfileViewController: UIViewController {
     
@@ -16,6 +17,7 @@ class ProfileViewController: UIViewController {
     private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
     private var profileImageServiceObserver: NSObjectProtocol?
+    private var alertPresenter: AlertPresenting?
     
     private lazy var userPictureImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: userPicture))
@@ -76,6 +78,7 @@ class ProfileViewController: UIViewController {
             self.updateAvatar()
         }
         
+        alertPresenter = AlertPresenter(viewController: self)
         updateAvatar()
         addUserPicture(imageView: userPictureImageView)
         addUserName(label: userNameLabel)
@@ -121,7 +124,7 @@ class ProfileViewController: UIViewController {
     
     @objc
     private func didTapButton() {
-        userDescription.text = "Хочу выйти"
+        showAlert()
     }
     
     private func updateProfileDetails(profile: Profile?) {
@@ -136,6 +139,62 @@ class ProfileViewController: UIViewController {
             let url = URL(string: profileImageURL)
         else { return }
         userPictureImageView.kf.setImage(with: url, placeholder: UIImage(named: userPicture))
+    }
+    
+    private func resetView() {
+        userNameLabel.text = "User"
+        userLoginLabel.text = "Login"
+        userDescription.text = "Description"
+        userPictureImageView.image = UIImage(systemName: userPicture)
+    }
+    
+    private func resetToken() {
+        guard OAuth2TokenStorage.shared.removeToken() else {
+            print("ERR: reset token")
+            return
+        }
+    }
+    
+    private func resetPhotos() {
+        ImageListService.shared.resetPhotos()
+    }
+    
+    private func resetCookies() {
+        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            records.forEach { record in
+                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record]) { }
+            }
+        }
+    }
+    
+    private func showAlert() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            let alertModel = AlertModel(
+                title: "Выход",
+                message: "Хотите выйти?",
+                buttonText: "Да",
+                completion: { self.resetAccount() },
+                secondButtonText: "Нет",
+                secondCompletion: { self.dismiss(animated: true) }
+            )
+            self.alertPresenter?.showAlert(for: alertModel)
+        }
+    }
+    
+    private func switchToSplashVC() {
+        guard let window = UIApplication.shared.windows.first else { return }
+        let splashViewController = SplashViewController()
+        window.rootViewController = splashViewController
+    }
+    
+    private func resetAccount() {
+        resetToken()
+        resetView()
+        resetPhotos()
+        resetCookies()
+        switchToSplashVC()
     }
     
 }

@@ -41,7 +41,7 @@ final class WebViewViewController: UIViewController {
         button.contentEdgeInsets = UIEdgeInsets(top: 9, left: 9, bottom: 9, right: 9)
         
         button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-
+        
         return button
     }()
     
@@ -141,7 +141,7 @@ extension WebViewViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView,
                  decidePolicyFor navigationAction: WKNavigationAction,
                  decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-                
+        
         if let code = code(from: navigationAction) {
             delegate?.webViewViewController(self, didAuthenticateWithCode: code)
             decisionHandler(.cancel)
