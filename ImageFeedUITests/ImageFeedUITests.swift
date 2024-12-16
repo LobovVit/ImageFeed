@@ -8,13 +8,16 @@
 import XCTest
 
 class Image_FeedUITests: XCTestCase {
+    
     private let app = XCUIApplication() // переменная приложения
+    
     private enum const {
         static let loginText: String = "lobov.vitaliy@gmail.com"
-        static let passwordText: String = "QWEdsa123"
+        static let passwordText: String = ""
         static let name:  String = "Vitalii Lobov"
         static let username:  String = "@lovital"
     }
+    
     override func setUpWithError() throws {
         continueAfterFailure = false // настройка выполнения тестов, которая прекратит выполнения тестов, если в тесте что-то пошло не так
         
