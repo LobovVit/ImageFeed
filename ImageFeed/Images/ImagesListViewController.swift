@@ -7,26 +7,30 @@
 
 import UIKit
 
-final class ImagesListViewController: UIViewController {
+public protocol ImagesListViewControllerProtocol: AnyObject {
+    var presenter: ImagesListViewPresenterProtocol? { get set }
+    func updateTableViewAnimated()
+}
+
+final class ImagesListViewController: UIViewController,ImagesListViewControllerProtocol {
     
     @IBOutlet private var tableView: UITableView!
     
-    private var photos: [Photo] = []
     private let showSingleImageSegueIdentifier = "ShowSingleImage"
     
     private var imageListService = ImageListService.shared
     private var imageListServiceObserver: NSObjectProtocol?
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+    var presenter: ImagesListViewPresenterProtocol?
+    var photos: [Photo] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        setupImageListService()
-        setupNotificationObserver()
+        //setupImageListService()
+        //setupNotificationObserver()
         view.addSubview(tableView)
+        presenter = ImagesListViewPresenter(view: self)
+        presenter?.viewDidLoad()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -53,7 +57,7 @@ extension ImagesListViewController: UITableViewDelegate {
     }
 }
 
-private extension ImagesListViewController {
+extension ImagesListViewController {
     
     func setupTableView() {
         tableView.dataSource = self
@@ -61,23 +65,7 @@ private extension ImagesListViewController {
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 0, right: 0)
     }
     
-    func setupImageListService() {
-        imageListService.fetchPhotoNextPage()
-        updateTableViewAnimated()
-    }
-    
-    func setupNotificationObserver() {
-        imageListServiceObserver = NotificationCenter.default
-            .addObserver(
-                forName: ImageListService.didChangeNotification,
-                object: nil,
-                queue: .main
-            ) { [weak self] _ in
-                self?.updateTableViewAnimated()
-            }
-    }
-    
-    private func updateTableViewAnimated() {
+    func updateTableViewAnimated() {
         DispatchQueue.main.async {
             let oldCount = self.photos.count
             let newCount = self.imageListService.photos.count
