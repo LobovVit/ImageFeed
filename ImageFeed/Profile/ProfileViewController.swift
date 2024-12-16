@@ -66,6 +66,7 @@ class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         button.tintColor = .red
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.accessibilityIdentifier = "ExitButton" 
         return button
     }()
     

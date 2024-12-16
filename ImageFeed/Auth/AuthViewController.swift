@@ -36,6 +36,7 @@ final class AuthViewController: UIViewController {
         button.setTitleColor(UIColor(named: "ypBlack") ?? UIColor.black, for: .normal)
         button.backgroundColor = UIColor(named: "ypWhite") ?? UIColor.white
         button.addTarget(self, action: #selector(signinButtonTapped), for: .touchUpInside)
+        button.accessibilityIdentifier = "Authenticate" 
         return button
     }()
     
