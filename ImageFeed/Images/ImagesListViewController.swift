@@ -26,8 +26,6 @@ final class ImagesListViewController: UIViewController,ImagesListViewControllerP
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        //setupImageListService()
-        //setupNotificationObserver()
         view.addSubview(tableView)
         presenter = ImagesListViewPresenter(view: self)
         presenter?.viewDidLoad()
