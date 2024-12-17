@@ -4,27 +4,28 @@
 //
 //  Created by Vitaly Lobov on 16.12.2024.
 //
+
 import Foundation
 
 protocol AuthHelperProtocol {
-    func authRequest() -> URLRequest?
-    func code(url: URL) -> String?
+    func createAuthRequest() -> URLRequest?
+    func getCode(url: URL) -> String?
 }
 
 final class AuthHelper: AuthHelperProtocol {
     
-    let configuration: AuthConfiguration
+    private let configuration: AuthConfiguration
     
     init(configuration: AuthConfiguration = .standard) {
         self.configuration = configuration
     }
     
-    func authRequest() -> URLRequest? {
-        guard let url = authURL() else { return nil}
+    func createAuthRequest() -> URLRequest? {
+        guard let url = createAuthURL() else { return nil}
         return URLRequest(url: url)
     }
     
-    func authURL() -> URL? {
+    func createAuthURL() -> URL? {
         guard var urlComponents = URLComponents(string: configuration.unsplashAuthorizeURLString) else { return nil}
         
         urlComponents.queryItems = [
@@ -36,10 +37,10 @@ final class AuthHelper: AuthHelperProtocol {
         return urlComponents.url
     }
     
-    func code(url: URL) -> String? {
+    func getCode(url: URL) -> String? {
         if
             let urlComponents = URLComponents(string: url.absoluteString),
-            urlComponents.path ==  Constants.authorizeNative ,
+            urlComponents.path ==  Constants.authorizeNative,
             let items = urlComponents.queryItems,
             let codeItem = items.first(where: { $0.name == Constants.code })
         {

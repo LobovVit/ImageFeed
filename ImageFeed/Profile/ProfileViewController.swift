@@ -4,6 +4,7 @@
 //
 //  Created by Vitaly Lobov on 10.10.2024.
 //
+
 import UIKit
 import Kingfisher
 import WebKit
@@ -14,7 +15,7 @@ public protocol ProfileViewControllerProtocol: AnyObject {
     func displayProfileData(name: String?, loginName: String?, bio: String?)
 }
 
-class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
+final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
     
     private let fontColor = UIColor(red: 174.0/255, green: 175.0/255, blue: 180.0/255, alpha: 1.0)
     private let userPicture: String = "UserAvatarPlaceholder"
@@ -130,7 +131,7 @@ class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
         userDescription.text = bio
     }
     
-    internal func updateAvatar() {
+    func updateAvatar() {
         guard
             let profileImageURL = ProfileImageService.shared.userPicURL,
             let url = URL(string: profileImageURL)

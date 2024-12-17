@@ -38,7 +38,7 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rI5-mD-Bxu" userLabel="Like Button">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rI5-mD-Bxu" userLabel="LikeButton">
                                                     <rect key="frame" x="333" y="4" width="44" height="44"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="LikeButton"/>
                                                     <constraints>

@@ -4,6 +4,7 @@
 //
 //  Created by Vitaly Lobov on 16.12.2024.
 //
+
 import Foundation
 
 public protocol WebViewPresenterProtocol {
@@ -34,11 +35,11 @@ final class WebViewPresenter: WebViewPresenterProtocol {
     }
     
     func code(from url: URL) -> String? {
-        authHelper.code(url: url)
+        authHelper.getCode(url: url)
     }
     
     func viewDidLoad() {
-        guard let request = authHelper.authRequest() else {
+        guard let request = authHelper.createAuthRequest() else {
             return
         }
         didUpdateProgressValue(0)

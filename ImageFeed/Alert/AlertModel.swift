@@ -1,5 +1,5 @@
 //
-//  Alert.swift
+//  AlertModel.swift
 //  ImageFeed
 //
 //  Created by Vitaly Lobov on 06.12.2024.
@@ -12,7 +12,7 @@ struct AlertModel {
     let message: String
     let buttonText: String
     let completion: (() -> Void)?
-    var secondButtonText: String? = nil
+    var secondButtonText: String?
     var secondCompletion: (() -> Void)? = {}
 }
 

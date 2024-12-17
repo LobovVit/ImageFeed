@@ -7,11 +7,11 @@
 
 import XCTest
 
-class Image_FeedUITests: XCTestCase {
+final class Image_FeedUITests: XCTestCase {
     
     private let app = XCUIApplication() // переменная приложения
     
-    private enum const {
+    private enum Const {
         static let loginText: String = "lobov.vitaliy@gmail.com"
         static let passwordText: String = ""
         static let name:  String = "Vitalii Lobov"
@@ -32,13 +32,13 @@ class Image_FeedUITests: XCTestCase {
         let loginTextField = webView.descendants(matching: .textField).element
         XCTAssertTrue(loginTextField.waitForExistence(timeout: 5))
         loginTextField.tap()
-        loginTextField.typeText(const.loginText)
+        loginTextField.typeText(Const.loginText)
         app.toolbars.buttons["Done"].tap()
         
         let passwordTextField = webView.descendants(matching: .secureTextField).element
         XCTAssertTrue(loginTextField.waitForExistence(timeout: 5))
         passwordTextField.tap()
-        passwordTextField.typeText(const.passwordText)
+        passwordTextField.typeText(Const.passwordText)
         app.toolbars.buttons["Done"].tap()
         
         webView.buttons["Login"].tap()
@@ -58,7 +58,7 @@ class Image_FeedUITests: XCTestCase {
         sleep(2)
         
         
-        let cellToLike = tablesQuery.children(matching: .cell).element(boundBy: 1)
+        let cellToLike = tablesQuery.children(matching: .cell).element(boundBy: 0)
         cellToLike.buttons["LikeButton"].tap()
         sleep(2)
         cellToLike.buttons["LikeButton"].tap()
@@ -79,8 +79,8 @@ class Image_FeedUITests: XCTestCase {
         sleep(3)
         app.tabBars.buttons.element(boundBy: 1).tap()
         
-        XCTAssertTrue(app.staticTexts[const.name].exists)
-        XCTAssertTrue(app.staticTexts[const.username].exists)
+        XCTAssertTrue(app.staticTexts[Const.name].exists)
+        XCTAssertTrue(app.staticTexts[Const.username].exists)
         
         app.buttons["ExitButton"].tap()
         app.alerts["Выход"].scrollViews.otherElements.buttons["Да"].tap()
