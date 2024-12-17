@@ -9,7 +9,7 @@ import XCTest
 
 final class Image_FeedUITests: XCTestCase {
     
-    private let app = XCUIApplication() // переменная приложения
+    private let app = XCUIApplication()
     
     private enum Const {
         static let loginText: String = "lobov.vitaliy@gmail.com"
@@ -19,13 +19,12 @@ final class Image_FeedUITests: XCTestCase {
     }
     
     override func setUpWithError() throws {
-        continueAfterFailure = false // настройка выполнения тестов, которая прекратит выполнения тестов, если в тесте что-то пошло не так
+        continueAfterFailure = false
         
-        app.launch() // запускаем приложение перед каждым тестом
+        app.launch()
     }
     
     func testAuth() throws {
-        // тестируем сценарий авторизации
         app.buttons["Authenticate"].tap()
         let webView = app.webViews["UnsplashWebView"]
         XCTAssertTrue(webView.waitForExistence(timeout: 5))
@@ -51,7 +50,6 @@ final class Image_FeedUITests: XCTestCase {
     }
     
     func testFeed() throws {
-        // тестируем сценарий ленты
         let tablesQuery = app.tables
         let cell = tablesQuery.children(matching: .cell).element(boundBy: 0)
         cell.swipeUp()
@@ -75,7 +73,6 @@ final class Image_FeedUITests: XCTestCase {
     }
     
     func testProfile() throws {
-        // тестируем сценарий профиля
         sleep(3)
         app.tabBars.buttons.element(boundBy: 1).tap()
         
