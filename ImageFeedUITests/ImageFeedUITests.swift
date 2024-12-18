@@ -13,7 +13,7 @@ final class Image_FeedUITests: XCTestCase {
     
     private enum Const {
         static let loginText: String = "lobov.vitaliy@gmail.com"
-        static let passwordText: String = ""
+        static let passwordText: String = "QWEdsa123"
         static let name:  String = "Vitalii Lobov"
         static let username:  String = "@lovital"
     }
@@ -51,16 +51,13 @@ final class Image_FeedUITests: XCTestCase {
     
     func testFeed() throws {
         let tablesQuery = app.tables
-        let cell = tablesQuery.children(matching: .cell).element(boundBy: 0)
-        cell.swipeUp()
-        sleep(2)
-        
-        
         let cellToLike = tablesQuery.children(matching: .cell).element(boundBy: 0)
+        XCTAssertTrue(cellToLike.waitForExistence(timeout: 3))
+        
         cellToLike.buttons["LikeButton"].tap()
         sleep(2)
         cellToLike.buttons["LikeButton"].tap()
-        
+        sleep(2)
         cellToLike.tap()
         sleep(2)
         
@@ -70,10 +67,14 @@ final class Image_FeedUITests: XCTestCase {
         
         let backButton = app.buttons["BackButton"]
         backButton.tap()
+        
+        let cell = tablesQuery.children(matching: .cell).element(boundBy: 0)
+        cell.swipeUp()
+        sleep(2)
     }
     
     func testProfile() throws {
-        sleep(3)
+        XCTAssertTrue(app.tabBars.buttons.element(boundBy: 0).waitForExistence(timeout: 3))
         app.tabBars.buttons.element(boundBy: 1).tap()
         
         XCTAssertTrue(app.staticTexts[Const.name].exists)
@@ -81,5 +82,6 @@ final class Image_FeedUITests: XCTestCase {
         
         app.buttons["ExitButton"].tap()
         app.alerts["Выход"].scrollViews.otherElements.buttons["Да"].tap()
+        XCTAssertTrue(app.buttons["Authenticate"].waitForExistence(timeout: 3))
     }
 }
