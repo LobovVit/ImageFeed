@@ -56,12 +56,14 @@ final class Image_FeedUITests: XCTestCase {
         sleep(4)
         app.swipeDown()
         sleep(4)
+        app.swipeDown()
+        sleep(4)
         
         let cellToLike = tablesQuery.children(matching: .cell).element(boundBy: 0)
         forceTapElement(element: cellToLike.buttons["LikeButton"])
-        sleep(1)
+        sleep(10)
         forceTapElement(element: cellToLike.buttons["LikeButton"])
-        sleep(1)
+        sleep(10)
         
         forceTapElement(element: cellToLike)
         sleep(10)
