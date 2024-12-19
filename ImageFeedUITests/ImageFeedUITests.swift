@@ -51,6 +51,7 @@ final class Image_FeedUITests: XCTestCase {
         let tablesQuery = app.tables
         
         let cell = tablesQuery.children(matching: .cell).element(boundBy: 0)
+        XCTAssertTrue(cell.waitForExistence(timeout: 3))
         cell.swipeUp()
         sleep(4)
         
