@@ -38,3 +38,15 @@ struct Profile {
     
     var bio: String
 }
+
+struct UserResult: Codable {
+    let profileImage: image
+    
+    private enum CodingKeys: String, CodingKey {
+        case profileImage = "profile_image"
+    }
+}
+
+struct image: Codable {
+    let small: String
+}
