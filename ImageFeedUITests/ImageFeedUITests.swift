@@ -54,14 +54,16 @@ final class Image_FeedUITests: XCTestCase {
         XCTAssertTrue(cell.waitForExistence(timeout: 3))
         cell.swipeUp()
         sleep(4)
-        
-        let cellToLike = tablesQuery.children(matching: .cell).element(boundBy: 1)
-        cellToLike.buttons["LikeButton"].tap()
-        sleep(4)
-        cellToLike.buttons["LikeButton"].tap()
+        app.swipeDown()
         sleep(4)
         
-        cellToLike.tap()
+        let cellToLike = tablesQuery.children(matching: .cell).element(boundBy: 0)
+        forceTapElement(element: cellToLike.buttons["LikeButton"])
+        sleep(1)
+        forceTapElement(element: cellToLike.buttons["LikeButton"])
+        sleep(1)
+        
+        forceTapElement(element: cellToLike)
         sleep(10)
         let image = app.scrollViews.images.element(boundBy: 0)
         image.pinch(withScale: 3, velocity: 1)
@@ -82,4 +84,15 @@ final class Image_FeedUITests: XCTestCase {
         app.alerts["Выход"].scrollViews.otherElements.buttons["Да"].tap()
         XCTAssertTrue(app.buttons["Authenticate"].waitForExistence(timeout: 3))
     }
+    
+    func forceTapElement(element: XCUIElement) {
+            if element.isHittable {
+                element.tap()
+            }
+            else {
+                let coordinate: XCUICoordinate = element.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0)).withOffset(CGVector(dx: element.frame.origin.x, dy: element.frame.origin.y))
+                coordinate.tap()
+            }
+        }
 }
+
