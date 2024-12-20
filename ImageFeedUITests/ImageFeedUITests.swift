@@ -49,28 +49,23 @@ final class Image_FeedUITests: XCTestCase {
     
     func testFeed() throws {
         let tablesQuery = app.tables
-        
+
         let cell = tablesQuery.children(matching: .cell).element(boundBy: 0)
         XCTAssertTrue(cell.waitForExistence(timeout: 3))
         cell.swipeUp()
         sleep(4)
-        app.swipeDown()
+
+        let cellToLike = tablesQuery.children(matching: .cell).element(boundBy: 1)
+        cellToLike.buttons["LikeButton"].tap()
+        cellToLike.buttons["LikeButton"].tap()
         sleep(4)
-        app.swipeDown()
-        sleep(4)
-        
-        let cellToLike = tablesQuery.children(matching: .cell).element(boundBy: 0)
-        forceTapElement(element: cellToLike.buttons["LikeButton"])
-        sleep(10)
-        forceTapElement(element: cellToLike.buttons["LikeButton"])
-        sleep(10)
-        
-        forceTapElement(element: cellToLike)
+
+        cellToLike.tap()
         sleep(10)
         let image = app.scrollViews.images.element(boundBy: 0)
         image.pinch(withScale: 3, velocity: 1)
         image.pinch(withScale: 0.5, velocity: -1)
-        
+
         let backButton = app.buttons["BackButton"]
         backButton.tap()
     }
