@@ -4,6 +4,7 @@
 //
 //  Created by Vitaly Lobov on 30.10.2024.
 //
+
 import Foundation
 
 enum AuthServiceError: Error {

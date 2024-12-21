@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xA4-YS-fm1">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                                 <color key="backgroundColor" red="0.1019607843" green="0.1058823529" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.1019607843" green="0.1058823529" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -38,8 +39,9 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rI5-mD-Bxu" userLabel="Like Button">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rI5-mD-Bxu" userLabel="LikeButton">
                                                     <rect key="frame" x="333" y="4" width="44" height="44"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="LikeButton"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="1IB-ae-dF9"/>
                                                         <constraint firstAttribute="width" constant="44" id="svi-gD-Vhh"/>
@@ -84,8 +86,9 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" name="ypBlack"/>
                         <constraints>
-                            <constraint firstItem="xA4-YS-fm1" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="5Ri-y7-5Pf"/>
+                            <constraint firstItem="xA4-YS-fm1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="5Ri-y7-5Pf"/>
                             <constraint firstItem="xA4-YS-fm1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9db-fO-4bd"/>
                             <constraint firstAttribute="bottom" secondItem="xA4-YS-fm1" secondAttribute="bottom" id="LYw-u2-r58"/>
                             <constraint firstItem="xA4-YS-fm1" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="cHq-1g-j8k"/>
@@ -143,6 +146,7 @@
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLm-lS-Jwj">
                                 <rect key="frame" x="7" y="4" width="48" height="48"/>
+                                <accessibility key="accessibilityConfiguration" identifier="BackButton"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="C5u-QH-0G1"/>
                                     <constraint firstAttribute="width" constant="48" id="rQn-XS-4Fj"/>
@@ -337,6 +341,9 @@
         <image name="like_button_on" width="30" height="28"/>
         <image name="tab_editorial_active" width="30" height="30"/>
         <image name="unsplash_ic" width="60" height="60"/>
+        <namedColor name="ypBlack">
+            <color red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

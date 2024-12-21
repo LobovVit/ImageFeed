@@ -36,6 +36,7 @@ final class AuthViewController: UIViewController {
         button.setTitleColor(UIColor(named: "ypBlack") ?? UIColor.black, for: .normal)
         button.backgroundColor = UIColor(named: "ypWhite") ?? UIColor.white
         button.addTarget(self, action: #selector(signinButtonTapped), for: .touchUpInside)
+        button.accessibilityIdentifier = "Authenticate" 
         return button
     }()
     
@@ -74,6 +75,10 @@ final class AuthViewController: UIViewController {
     
     private func navigateToWebView() {
         let vc = WebViewViewController()
+        let authHelper = AuthHelper()
+        let vp = WebViewPresenter(authHelper: authHelper)
+        vc.presenter = vp
+        vp.view = vc
         vc.delegate = self
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)

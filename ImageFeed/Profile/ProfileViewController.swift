@@ -4,20 +4,24 @@
 //
 //  Created by Vitaly Lobov on 10.10.2024.
 //
+
 import UIKit
 import Kingfisher
 import WebKit
 
-class ProfileViewController: UIViewController {
+public protocol ProfileViewControllerProtocol: AnyObject {
+    var presenter: ProfileViewPresenterProtocol? { get set }
+    func updateAvatar()
+    func displayProfileData(name: String?, loginName: String?, bio: String?)
+}
+
+final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
     
     private let fontColor = UIColor(red: 174.0/255, green: 175.0/255, blue: 180.0/255, alpha: 1.0)
     private let userPicture: String = "UserAvatarPlaceholder"
     private let exitBtnPick: String = "exitBtnPick"
-    private var profile: Profile?
-    private let profileService = ProfileService.shared
-    private let profileImageService = ProfileImageService.shared
-    private var profileImageServiceObserver: NSObjectProtocol?
     private var alertPresenter: AlertPresenting?
+    var presenter: ProfileViewPresenterProtocol?
     
     private lazy var userPictureImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: userPicture))
@@ -63,21 +67,15 @@ class ProfileViewController: UIViewController {
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         button.tintColor = .red
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.accessibilityIdentifier = "ExitButton" 
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter = ProfileViewPresenter(view: self)
+        presenter?.viewDidLoad()
         view.backgroundColor = UIColor(named: "ypBlack")
-        profileImageServiceObserver = NotificationCenter.default.addObserver(forName: ProfileImageService.didChangeNotification,
-                                                                             object: nil,
-                                                                             queue: .main) { [weak self] _ in
-            guard let self = self else {
-                return
-            }
-            self.updateAvatar()
-        }
-        
         alertPresenter = AlertPresenter(viewController: self)
         updateAvatar()
         addUserPicture(imageView: userPictureImageView)
@@ -85,7 +83,6 @@ class ProfileViewController: UIViewController {
         addUserLogin(label: userLoginLabel)
         addUserDescription(label: userDescription)
         addExitButton(button: exitBtn)
-        updateProfileDetails(profile: profileService.profile)
     }
     
     private func addUserPicture(imageView: UIImageView ) {
@@ -127,15 +124,16 @@ class ProfileViewController: UIViewController {
         showAlert()
     }
     
-    private func updateProfileDetails(profile: Profile?) {
-        userNameLabel.text = profileService.profile?.name
-        userLoginLabel.text = profileService.profile?.loginName
-        userDescription.text = profileService.profile?.bio
+    
+    func displayProfileData(name: String?, loginName: String?, bio: String?) {
+        userNameLabel.text = name
+        userLoginLabel.text = loginName
+        userDescription.text = bio
     }
     
-    private func updateAvatar() {
+    func updateAvatar() {
         guard
-            let profileImageURL = profileImageService.userPicURL,
+            let profileImageURL = ProfileImageService.shared.userPicURL,
             let url = URL(string: profileImageURL)
         else { return }
         userPictureImageView.kf.setImage(with: url, placeholder: UIImage(named: userPicture))
